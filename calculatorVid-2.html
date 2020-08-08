@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <!--font awesome icon-->
+    <link rel="stylesheet" href="/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <!--CSS style section-->
+    <style>
+        
+        body{
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color:wheat;
+        }
+        table{
+            background-color: white;
+            padding: 11px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        button{
+            font-size: 25px;
+            padding: 15px 25px;
+            text-align: center;
+            border-radius:50%;
+            border: none;
+            outline: none;
+            margin-left: 7px;
+            margin-top: 10px;
+            background-color: rgb(148, 145, 145);
+        }
+        button:active{
+            background: navajowhite;
+        }
+        #inp{
+            font-size: 35px;
+            padding: 2px 0px;
+            width: 342px;
+            height: 44px;
+            background: orangered;
+            border: none;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+        }
+        #one,#four,#seven,#dec,#cl{
+            margin-left: 0px;
+        }
+        #cancel{
+            padding:15px 20px ;
+            
+        }
+        #can{
+            border: double;
+            padding: 0 3px;
+            border: ridge;
+        }
+        #equal{
+            background: orangered;
+        }
+        #equal:active{
+            background-color: rgb(182, 149, 88);
+        }
+        #add,#divi,#mod,#mul,#sub,#cl,#cancel{
+            color: orange;
+        }
+        #dark{
+            background:rgb(42, 40, 40);
+            color: white;
+        }
+    </style>
+<!--end of CSS style section-->
+
+</head>
+
+<body id="bodi">
+
+    <!--table section-->
+
+        <table id="tab">
+
+            <!--input field-->
+            <input type="text" id="inp" value="0" readonly>
+            <!--end of input field-->
+
+            <!-- table rows-->
+
+            <tr>
+                <td><button type="button" id="one" value="1" onclick="calcNumbers(one.value)">1</button></td>
+
+                <td><button id="two" type="button" value="2" onclick="calcNumbers(two.value)">2</button></td>
+
+                <td><button type="button" id="three" value="3" onclick="calcNumbers(three.value)">3</button></td>
+
+                <td><button type="button" id="add" value="+" onclick="calcNumbers(add.value)">+</button></td>
+            </tr>
+
+
+            <tr>
+                <td><button type="button" id="four" value="4" onclick="calcNumbers(four.value)">4</button></td>
+
+                <td><button id="five" type="button" value="5" onclick="calcNumbers(five.value)">5</button></td>
+
+                <td><button type="button" id="six" value="6" onclick="calcNumbers(six.value)">6</button></td>
+
+                <td><button type="button" id="sub" value="-" onclick="calcNumbers(sub.value)">-</button></td>
+            </tr>
+
+            <tr>
+                <td><button type="button" id="seven" value="7" onclick="calcNumbers(seven.value)">7</button></td>
+
+                <td><button id="eight" type="button" value="8" onclick="calcNumbers(eight.value)">8</button></td>
+
+                <td><button type="button" id="nine" value="9" onclick="calcNumbers(nine.value)">9</button></td>
+
+                <td><button type="button" id="mul" value="*" onclick="calcNumbers(mul.value)">x</button></td>
+            </tr>
+
+            <tr>
+                <td><button type="button" id="dec" value="." onclick="calcNumbers(dec.value)">.</button></td>
+
+                <td><button id="zero" type="button" value="0" onclick="calcNumbers(zero.value)">0</button></td>
+
+                <td><button type="button" id="mod" class="btns" value="%" onclick="calcNumbers(mod.value)">%</button></td>
+
+                <td><button type="button" id="divi" value="/" onclick="calcNumbers(divi.value)">/</button></td>
+            </tr>
+
+            <tr>
+                <td><button type="button" id="cl" value="0" onclick="clears(cl.value)">C</button></td>
+
+                <td><button id="cancel" type="button" value="S" onclick="cancell()"><i class="fa fa-times" id="can" aria-hidden="true" ></i></button></td>
+
+                <td><button type="button" id="dark" value="" onclick="darkMode()"><i class="fa fa-moon-o" aria-hidden="true" ></i></button></td>
+
+                <td><button type="button" id="equal" value="=" onclick="evaluate(inp.value=eval(inp.value))">=</button></td>
+            </tr>
+            <!--end of table rows-->
+
+        </table>
+    <!--end of table section-->
+
+
+    <!--javascript section-->
+    <script>
+
+        // input section
+        function calcNumbers(result){
+            if( document.getElementById('inp').value==='0')
+            {
+                document.getElementById('inp').value=result;
+            }
+            else{
+                document.getElementById('inp').value+=result;
+            }
+            console.log(result);
+        }
+        //end of input section
+
+        //clear button
+        function clears(val){
+            document.getElementById('inp').value=val;
+            console.log(val);
+        }
+        // end of clear button
+
+
+        //cancel button
+        function cancell()
+        {
+            var count=document.getElementById('inp').value; 
+        
+            count=count.substring(0,count.length-1);
+            console.log(count)
+            document.getElementById('inp').value=count;
+
+            if(count.length==0){
+                document.getElementById('inp').value=0;
+            }
+        }
+        // end of cancel button
+
+        // darkMode button
+        function darkMode(){
+
+        var darkMode= document.getElementById('dark').style.background;
+        console.log(darkMode);
+    if(darkMode===''||darkMode==='rgb(42, 40, 40)')
+        {
+        document.getElementById('tab').style.background="rgb(41, 36, 36)";
+        document.getElementById('inp').style.background="rgb(22, 63, 22)";
+        document.getElementById('inp').style.color="white";
+        document.getElementById('equal').style.background="rgb(22, 63, 22)";
+        document.getElementById('equal').style.color="white";
+        document.getElementById('dark').style.background="white";
+        document.getElementById('dark').style.color="black";
+        document.getElementById('bodi').style.background="rgb(1, 14, 7)";
+
+        var items=document.querySelectorAll('#add,#sub,#mul,#divi,#mod,#cl,#cancel');
+        for(var i=0;i<items.length;i++)
+        {
+            items[i].style.color="rgb(22, 63, 22)";
+        }
+
+        }
+        else if(darkMode==="white")
+        {
+            document.getElementById('tab').style.background="white";
+        document.getElementById('inp').style.background="orangered";
+        document.getElementById('inp').style.color="black";
+        document.getElementById('equal').style.background="orangered";
+        document.getElementById('equal').style.color="black";
+        document.getElementById('dark').style.background="rgb(42, 40, 40)";
+        document.getElementById('dark').style.color="white";
+        document.getElementById('bodi').style.background="wheat";
+        
+        var items=document.querySelectorAll('#add,#sub,#mul,#divi,#mod,#cl,#cancel');
+        for(var i=0;i<items.length;i++)
+        {
+            items[i].style.color="orange";
+        }
+
+        }
+    }
+    //end of darkMode button
+
+    </script>
+<!-- end of javascript section-->
+
+</body>
+</html>
